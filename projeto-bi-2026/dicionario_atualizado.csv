@@ -1,0 +1,85 @@
+﻿tabela,campo,tipo_logico,papel,definicao_regra,nulos,origem
+clientes,cliente_id,texto,chave de negócio,Identificador sintético do cliente. FK nos eventos; pode não existir no cadastro.,Não observados vazios nesta geração,clientes.csv
+clientes,nome_ficticio,texto,atributo,"Nome sintético, sem finalidade de identificação real.",Não observados vazios nesta geração,clientes.csv
+clientes,idade,decimal/número,atributo,"Idade declarada, em anos.",Não observados vazios nesta geração,clientes.csv
+clientes,renda_mensal,decimal/número,atributo,"Renda mensal declarada, em reais.",Não observados vazios nesta geração,clientes.csv
+clientes,regiao,texto,atributo,"Região do evento ou do cadastro, conforme tabela. Não substituir a região da venda pela do cliente.",Não observados vazios nesta geração,clientes.csv
+clientes,canal_preferido,texto,atributo,"Canal preferido cadastral, não necessariamente o canal utilizado.",Não observados vazios nesta geração,clientes.csv
+clientes,data_cadastro,data ISO,atributo,Data declarada de cadastro; há eventos anteriores a ela.,Não observados vazios nesta geração,clientes.csv
+clientes,status_cliente,texto,atributo,"Situação cadastral declarada, independente do segmento RFM.",Não observados vazios nesta geração,clientes.csv
+clientes,satisfacao_1a5,decimal/número,atributo,"Nota geral do cadastro, escala 1 a 5; distinta da satisfação do atendimento.",Não observados vazios nesta geração,clientes.csv
+clientes,compras_ultimos_30d,decimal/número,atributo,"Contagem declarada pelo gerador, sem data de posição; não usada para frequência calculada.",Não observados vazios nesta geração,clientes.csv
+clientes,dias_desde_ultima_compra,decimal/número,atributo,Recência declarada sem data de referência. Diverge do histórico; preservada apenas para auditoria.,Não observados vazios nesta geração,clientes.csv
+clientes,observacao,texto,atributo,Texto sintético livre. Não utilizado em métricas.,Não observados vazios nesta geração,clientes.csv
+produtos,produto_id,texto,chave de negócio,Identificador sintético do produto. Repetido com atributos conflitantes no cadastro bruto.,Não observados vazios nesta geração,produtos.csv
+produtos,nome_produto,texto,atributo,Nome sintético do produto.,Não observados vazios nesta geração,produtos.csv
+produtos,categoria,texto,atributo,Categoria cadastral; 9.999 SKUs têm mais de uma categoria.,Não observados vazios nesta geração,produtos.csv
+produtos,faixa_preco,texto,atributo,Faixa declarada pelo gerador; sem regra documentada.,Não observados vazios nesta geração,produtos.csv
+produtos,preco_lista,decimal/número,atributo,Preço de lista cadastral em reais; não substitui o preço transacional.,Não observados vazios nesta geração,produtos.csv
+produtos,custo_estimado,decimal/número,atributo,Custo unitário estimado em reais. Sem vigência e conflitante em todos os SKUs.,Não observados vazios nesta geração,produtos.csv
+produtos,estoque_cadastrado,decimal/número,atributo,"Unidades no cadastro, sem data ou depósito da posição. Usado somente em cenário.",Não observados vazios nesta geração,produtos.csv
+produtos,produto_ativo,texto,atributo,"Indicador cadastral Sim/Não, gerado independentemente das vendas.",Não observados vazios nesta geração,produtos.csv
+produtos,descricao,texto,atributo,Texto sintético livre do produto.,Não observados vazios nesta geração,produtos.csv
+vendas,pedido_id,texto,chave de negócio,Identificador do pedido; único nesta geração. Uma linha observada por pedido.,Não observados vazios nesta geração,vendas.csv
+vendas,cliente_id,texto,FK,Identificador sintético do cliente. FK nos eventos; pode não existir no cadastro.,Não observados vazios nesta geração,vendas.csv
+vendas,produto_id,texto,FK,Identificador sintético do produto. Repetido com atributos conflitantes no cadastro bruto.,Não observados vazios nesta geração,vendas.csv
+vendas,data_venda,data ISO,atributo,Data do pedido (ISO AAAA-MM-DD). Não há data de fechamento ou devolução.,Não observados vazios nesta geração,vendas.csv
+vendas,canal,texto,atributo,Canal efetivamente registrado no pedido.,Não observados vazios nesta geração,vendas.csv
+vendas,regiao,texto,atributo,"Região do evento ou do cadastro, conforme tabela. Não substituir a região da venda pela do cliente.",Não observados vazios nesta geração,vendas.csv
+vendas,quantidade,decimal/número,atributo,Quantidade de unidades no pedido ou movimento; positiva e inteira.,Não observados vazios nesta geração,vendas.csv
+vendas,preco_unitario,decimal/número,atributo,"Preço unitário transacional em reais, antes de desconto.",Não observados vazios nesta geração,vendas.csv
+vendas,desconto_percentual,decimal/número,atributo,"Fração de desconto: 0,182 significa 18,2%.",Não observados vazios nesta geração,vendas.csv
+vendas,status_pedido,texto,atributo,"Concluído, Cancelado, Devolvido ou Em processamento. Receita somente de Concluído.",Não observados vazios nesta geração,vendas.csv
+vendas,forma_pagamento,texto,atributo,Meio de pagamento declarado. Sem valores de taxas.,Não observados vazios nesta geração,vendas.csv
+vendas,prazo_entrega_dias,decimal/número,atributo,"Prazo declarado em dias. Sem data de entrega real, não mede atraso.",Não observados vazios nesta geração,vendas.csv
+vendas,observacao,texto,atributo,Texto sintético livre. Não utilizado em métricas.,Não observados vazios nesta geração,vendas.csv
+atendimento,atendimento_id,texto,chave de negócio,Identificador único do evento de atendimento.,Não observados vazios nesta geração,atendimento.csv
+atendimento,cliente_id,texto,FK,Identificador sintético do cliente. FK nos eventos; pode não existir no cadastro.,Não observados vazios nesta geração,atendimento.csv
+atendimento,data_atendimento,data ISO,atributo,"Data do evento de atendimento, sem data de encerramento.",Não observados vazios nesta geração,atendimento.csv
+atendimento,canal_atendimento,texto,atributo,Canal usado no atendimento.,Não observados vazios nesta geração,atendimento.csv
+atendimento,motivo,texto,atributo,Motivo do evento. Significado depende da fonte; não usar como sinal algébrico do estoque.,Não observados vazios nesta geração,atendimento.csv
+atendimento,satisfacao_atendimento,decimal/número,atributo,Nota de 1 a 5 por atendimento; notas 4 e 5 compõem o CSAT.,Não observados vazios nesta geração,atendimento.csv
+atendimento,duracao_minutos,decimal/número,atributo,"Duração declarada em minutos, sem timestamps de início/fim.",Não observados vazios nesta geração,atendimento.csv
+atendimento,status_atendimento,texto,atributo,"Resolvido, Pendente ou Escalado; fotografia declarada, sem evolução.",Não observados vazios nesta geração,atendimento.csv
+atendimento,recontatos,decimal/número,atributo,Contagem declarada de recontatos; não equivale a clientes únicos.,Não observados vazios nesta geração,atendimento.csv
+atendimento,comentario,texto,atributo,Texto sintético livre do atendimento.,Não observados vazios nesta geração,atendimento.csv
+marketing,interacao_id,texto,chave de negócio,Identificador único do registro de marketing; contagens agregadas no registro.,Não observados vazios nesta geração,marketing.csv
+marketing,cliente_id,texto,FK,Identificador sintético do cliente. FK nos eventos; pode não existir no cadastro.,Não observados vazios nesta geração,marketing.csv
+marketing,data_interacao,data ISO,atributo,Data do registro de marketing.,Não observados vazios nesta geração,marketing.csv
+marketing,campanha,texto,atributo,"Tipo de campanha declarado, sem identificador único de execução ou experimento.",Não observados vazios nesta geração,marketing.csv
+marketing,meio,texto,atributo,Meio de comunicação de marketing.,Não observados vazios nesta geração,marketing.csv
+marketing,canal_venda,texto,atributo,"Canal de venda associado ao registro de marketing, sem vínculo com pedido.",Não observados vazios nesta geração,marketing.csv
+marketing,impressoes,decimal/número,atributo,Contagem declarada de impressões no registro agregado.,Não observados vazios nesta geração,marketing.csv
+marketing,cliques,decimal/número,atributo,Contagem declarada de cliques; pode superar impressões.,Não observados vazios nesta geração,marketing.csv
+marketing,conversoes,decimal/número,atributo,Contagem declarada de conversões; pode superar cliques. Sem pedido vinculado.,Não observados vazios nesta geração,marketing.csv
+marketing,investimento,decimal/número,atributo,Investimento declarado do registro em reais.,Não observados vazios nesta geração,marketing.csv
+marketing,resultado,texto,atributo,Rótulo declarado do resultado; pode contradizer a contagem de conversões.,Não observados vazios nesta geração,marketing.csv
+marketing,regiao,texto,atributo,"Região do evento ou do cadastro, conforme tabela. Não substituir a região da venda pela do cliente.",Não observados vazios nesta geração,marketing.csv
+estoque,movimento_id,texto,chave de negócio,Identificador único da movimentação de estoque.,Não observados vazios nesta geração,estoque.csv
+estoque,produto_id,texto,FK,Identificador sintético do produto. Repetido com atributos conflitantes no cadastro bruto.,Não observados vazios nesta geração,estoque.csv
+estoque,data_movimento,data ISO,atributo,Data do movimento de estoque.,Não observados vazios nesta geração,estoque.csv
+estoque,tipo_movimento,texto,atributo,"Entrada, Saída, Ajuste ou Devolução. Ajustes/devoluções sem sinal inequívoco.",Não observados vazios nesta geração,estoque.csv
+estoque,quantidade,decimal/número,atributo,Quantidade de unidades no pedido ou movimento; positiva e inteira.,Não observados vazios nesta geração,estoque.csv
+estoque,deposito,texto,atributo,Identificador do depósito do movimento; não existe posição cadastral por depósito.,Não observados vazios nesta geração,estoque.csv
+estoque,motivo,texto,atributo,Motivo do evento. Significado depende da fonte; não usar como sinal algébrico do estoque.,Não observados vazios nesta geração,estoque.csv
+dim_produtos,produto_id,texto,PK única,Primeiro registro físico por produto: cenário sem autoridade temporal.,Nulo quando o insumo/denominador não existir,modelo.sql
+dim_produtos_ultimo,produto_id,texto,PK única,"Último registro físico por produto: teste de sensibilidade, não cadastro vigente.",Nulo quando o insumo/denominador não existir,modelo.sql
+fato_vendas,_linha,inteiro,PK técnica,"Linha de origem, preservada sem multiplicação após LEFT JOINs.",Nulo quando o insumo/denominador não existir,modelo.sql
+fato_vendas,bruto,real BRL,medida,quantidade × preço unitário.,Nulo quando o insumo/denominador não existir,modelo.sql
+fato_vendas,desconto,real BRL,medida,bruto × desconto_percentual.,Nulo quando o insumo/denominador não existir,modelo.sql
+fato_vendas,liquido,real BRL,medida,bruto − desconto. Receita agregada usa somente Concluído.,Nulo quando o insumo/denominador não existir,modelo.sql
+fato_vendas,custo_primeiro,real BRL,medida de cenário,quantidade × custo unitário do primeiro registro.,Nulo quando o insumo/denominador não existir,modelo.sql
+fato_vendas,custo_ultimo,real BRL,medida de cenário,quantidade × custo unitário do último registro.,Nulo quando o insumo/denominador não existir,modelo.sql
+clientes_rfm,cliente_id,texto,PK única,"União dos IDs observados em clientes, vendas, atendimento e marketing.",Nulo quando o insumo/denominador não existir,modelo.sql
+clientes_rfm,frequencia,inteiro,medida,"Pedidos concluídos em 365 dias, incluindo a data de referência.",Nulo quando o insumo/denominador não existir,modelo.sql
+clientes_rfm,monetario,real BRL,medida,Receita líquida dos pedidos concluídos na janela de 365 dias.,Nulo quando o insumo/denominador não existir,modelo.sql
+clientes_rfm,recencia,inteiro dias,medida,Data de referência menos última compra na janela. Nulo se não comprou na janela.,Nulo quando o insumo/denominador não existir,modelo.sql
+clientes_rfm,r,inteiro 0 a 5,regra,R: 5 até 30d; 4 até 60d; 3 até 90d; 2 até 180d; 1 depois; 0 sem compra na janela.,Nulo quando o insumo/denominador não existir,modelo.sql
+clientes_rfm,f,inteiro 0 a 5,regra,F: 5 para ≥8 pedidos; 4 para ≥5; 3 para ≥3; 2 para ≥2; 1 para 1; 0 para nenhum.,Nulo quando o insumo/denominador não existir,modelo.sql
+clientes_rfm,m,inteiro 0 a 5,regra,Quintil monetário entre compradores usando CUME_DIST. Empates preservados; 0 sem compra.,Nulo quando o insumo/denominador não existir,modelo.sql
+clientes_rfm,segmento,texto,classe descritiva,Regras sequenciais em modelo.sql. Não é previsão de churn.,Nulo quando o insumo/denominador não existir,modelo.sql
+clientes_rfm,reclamacoes,inteiro,medida,"Contagem de atendimentos por Atraso, Produto danificado, Reembolso e Cobrança em todo o histórico.",Nulo quando o insumo/denominador não existir,modelo.sql
+estoque_produto,cobertura,real dias,proxy de cenário,Estoque do primeiro cadastro × dias de histórico / saídas totais.,Nulo quando o insumo/denominador não existir,modelo.sql
+estoque_produto,cobertura_ultimo,real dias,proxy de cenário,"Mesma fórmula, substituindo pelo último cadastro.",Nulo quando o insumo/denominador não existir,modelo.sql
+estoque_produto,intensidade,real,proxy de cenário,Saídas totais / estoque do primeiro cadastro. Não é giro contábil.,Nulo quando o insumo/denominador não existir,modelo.sql
+estoque_produto,risco,texto,hipótese,"Faixas <30d, 30-180d, >180d ou sem saídas. Não confirma ruptura/excesso.",Nulo quando o insumo/denominador não existir,modelo.sql

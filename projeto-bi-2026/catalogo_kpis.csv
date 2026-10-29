@@ -1,0 +1,23 @@
+﻿id,kpi,formula,fonte,periodicidade,interpretacao_limitacao
+K01,Receita bruta concluída,"Σ(quantidade × preço unitário), status Concluído",vendas,Diária; fechamento mensal,"Reais antes dos descontos. Não inclui cancelados, devolvidos ou processamento."
+K02,Receita líquida comercial,"Σ[quantidade × preço × (1 − desconto)], status Concluído",vendas,Diária; fechamento mensal,"Receita após desconto; impostos, frete, taxas e estornos financeiros não estão disponíveis."
+K03,Desconto ponderado,Σ desconto em R$ / receita bruta concluída,vendas,Mensal,Média ponderada pelo valor bruto. Não usar média simples dos percentuais.
+K04,Margem estimada do cenário,(Receita líquida − Σ quantidade × custo cadastral) / receita líquida,vendas + dim_produtos,Mensal,Primeiro cadastro é cenário. Custo conflitante e sem vigência. Não representa lucro líquido.
+K05,Ticket médio concluído,Receita líquida / pedidos distintos concluídos,vendas,Mensal,"Pedido é único na base gerada; se surgir itemização, redefinir o contrato."
+K06,Taxa de conclusão,Pedidos Concluído / pedidos de todos os status,vendas,Mensal,"Situação do extrato, sem acompanhamento da mudança de status no tempo."
+K07,Cancelados e devolvidos,(Pedidos Cancelado + Devolvido) / todos os pedidos,vendas,Mensal,Sinal operacional. Não é uma perda financeira comprovada ou taxa de coorte.
+K08,Frequência por comprador,Pedidos concluídos em 365 dias / clientes com ≥1 desses pedidos,vendas_cliente,Mensal; referência fixa nesta entrega,Descreve somente compradores na janela. Não usa compras_ultimos_30d do cadastro.
+K09,Recência média na janela,Média(data de referência − última compra concluída) dos compradores em 365 dias,clientes_rfm,Mensal; referência no último dia da base,"Clientes sem compra na janela têm recência nula, não zero."
+K10,CSAT do atendimento,Atendimentos com nota 4 ou 5 / atendimentos com nota válida,atendimento,Mensal; histórico nesta entrega,"Denominador é atendimento, não cliente único. Notas 1 a 5 validadas."
+K11,Reclamações por atendimento,"Atendimentos por Atraso, Produto danificado, Reembolso ou Cobrança / atendimentos",atendimento,Mensal; histórico nesta entrega,"Classificação de trabalho. Troca, Dúvida e Elogio ficam fora por não implicarem reclamação."
+K12,Atendimentos não resolvidos,Atendimentos Pendente ou Escalado / atendimentos,atendimento,Mensal; histórico nesta entrega,"Sem data de encerramento, não mede atraso de SLA ou fila atual."
+K13,Investimento em marketing,Σ investimento dos registros,marketing,Mensal,Soma declarada. Não pressupõe que o gasto esteja ligado às vendas.
+K14,CTR declarado,Σ cliques / Σ impressões,marketing,Mensal,Razão agregada; há registros de funil incoerentes. Não garante validade do funil.
+K15,CVR declarado,Σ conversões / Σ cliques,marketing,Mensal,"Conversões declaradas, sem deduplicação por pedido ou janela de atribuição."
+K16,CPA declarado,Σ investimento / Σ conversões,marketing,Mensal,"Custo por conversão declarada. Não é CAC, ROI ou ROAS."
+K17,Funil incoerente,Registros com cliques > impressões OU conversões > cliques / registros de marketing,marketing,Por carga; mensal,"União de condições; não somar os dois problemas, pois há sobreposição."
+K18,Cobertura de estoque - proxy,Estoque cadastrado / (saídas totais / dias do histórico),estoque + dim_produtos,Por posição; cenário desta carga,Dias hipotéticos por SKU. Snapshot sem data; inclui motivos de saída diferentes de venda.
+K19,Intensidade de saídas - proxy,Saídas totais / estoque cadastrado,estoque + dim_produtos,Por carga; período integral,"Razão no período integral, não anualizada. Não é o giro contábil."
+K20,Produtos com baixa cobertura,SKUs com cobertura <30 dias / SKUs com cobertura calculável,estoque_produto,Por posição; cenário desta carga,"Limiar didático para conferência física, sem lead time ou nível de serviço."
+K21,Produtos com possível excesso,SKUs com cobertura >180 dias / SKUs com cobertura calculável,estoque_produto,Por posição; cenário desta carga,"Sem obsolescência, sazonalidade ou data de posição; não comprova excesso."
+K22,Giro contábil do estoque,CMV do período / estoque médio ao custo no período,Não disponível,"Mensal, quando houver insumos",Indisponível nesta base: faltam estoque médio temporal e CMV confiável. Não imputar zero.
